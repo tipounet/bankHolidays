@@ -17,12 +17,12 @@ public class BankHolidayUtilsTest {
   private BankHolidayUtils bankHolidayUtils;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     bankHolidayUtils = new BankHolidayUtils();
   }
 
   @Test
-  public void getEasterDay() throws Exception {
+  public void getEasterDay() {
     LocalDate result = this.bankHolidayUtils.getEasterDay(YEAR);
     assertThat(result).isNotNull().isEqualTo(easterDay2016);
     result = this.bankHolidayUtils.getEasterDay(2028);
@@ -54,28 +54,28 @@ public class BankHolidayUtilsTest {
   }
 
   @Test
-  public void getMondayOfEasterDay() throws Exception {
+  public void getMondayOfEasterDay() {
     LocalDate expected = easterDay2016.plus(1, ChronoUnit.DAYS);
     LocalDate result = this.bankHolidayUtils.getMondayOfEasterDay(easterDay2016);
     assertThat(result).isNotNull().isEqualTo(expected);
   }
 
   @Test
-  public void getAscension() throws Exception {
+  public void getAscension() {
     LocalDate expected = LocalDate.of(YEAR, Month.MAY, 25);
     LocalDate result = this.bankHolidayUtils.getAscension(easterDay2016);
     assertThat(result).isNotNull().isEqualTo(expected);
   }
 
   @Test
-  public void getMondayOfPentecote() throws Exception {
+  public void getMondayOfPentecote() {
     LocalDate expected = LocalDate.of(YEAR, Month.JUNE, 5);
     LocalDate result = this.bankHolidayUtils.getMondayOfPentecote(easterDay2016);
     assertThat(result).isNotNull().isEqualTo(expected);
   }
 
   @Test
-  public void isBankHoliday() throws Exception {
+  public void isBankHoliday() {
     // test jour fixe
     assertThat(bankHolidayUtils.isBankHoliday(LocalDate.of(2017, Month.JANUARY, 1))).isTrue();
     assertThat(bankHolidayUtils.isBankHoliday(LocalDate.of(2017, Month.MAY, 8))).isTrue();
