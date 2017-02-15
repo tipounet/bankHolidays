@@ -23,7 +23,7 @@ Ces dates sont communes a tout les pays qui utilise le calendrier grégorien.
 Nécéssite assertJ pour fonctionner
 
 
-## Méthode de calcule
+## Méthode de calcul
 ###Utilisation de la méthode de calcul de Meeus
 [source](https://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques_selon_la_m%C3%A9thode_de_Meeus#Calcul_de_la_date_de_P.C3.A2ques_gr.C3.A9gorienne)
 
