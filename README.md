@@ -24,5 +24,8 @@ Nécéssite assertJ pour fonctionner
 
 
 ## Méthode de calcule
-Utilisation de la méthode de calcul de Meeus
+###Utilisation de la méthode de calcul de Meeus
 [source](https://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques_selon_la_m%C3%A9thode_de_Meeus#Calcul_de_la_date_de_P.C3.A2ques_gr.C3.A9gorienne)
+
+### Utilisation de la méthode de Conway
+[source](https://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques_selon_la_m%C3%A9thode_de_Conway)

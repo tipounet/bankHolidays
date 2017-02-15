@@ -25,6 +25,32 @@ public class BankHolidayUtilsTest {
   public void getEasterDay() throws Exception {
     LocalDate result = this.bankHolidayUtils.getEasterDay(YEAR);
     assertThat(result).isNotNull().isEqualTo(easterDay2016);
+    result = this.bankHolidayUtils.getEasterDay(2028);
+    assertThat(result).isNotNull().isEqualTo(LocalDate.of(2028, Month.APRIL, 16));
+
+    result = this.bankHolidayUtils.getEasterDay(2006);
+    assertThat(result).isNotNull().isEqualTo(LocalDate.of(2006, Month.APRIL, 16));
+  }
+
+  @Test
+  public void getEasterDayConwayMethod() {
+    LocalDate result = this.bankHolidayUtils.getEasterDayConwayMethod(YEAR);
+    assertThat(result).isNotNull().isEqualTo(easterDay2016);
+
+    result = this.bankHolidayUtils.getEasterDayConwayMethod(2028);
+    assertThat(result).isNotNull().isEqualTo(LocalDate.of(2028, Month.APRIL, 16));
+
+    result = this.bankHolidayUtils.getEasterDayConwayMethod(2006);
+    assertThat(result).isNotNull().isEqualTo(LocalDate.of(2006, Month.APRIL, 16));
+  }
+
+  @Test
+  public void compareMeeusConway() {
+    LocalDate meeus = this.bankHolidayUtils.getEasterDay(YEAR);
+    LocalDate conway = this.bankHolidayUtils.getEasterDayConwayMethod(YEAR);
+
+    assertThat(meeus).isNotNull().isEqualTo(easterDay2016);
+    assertThat(conway).isNotNull().isEqualTo(meeus);
   }
 
   @Test

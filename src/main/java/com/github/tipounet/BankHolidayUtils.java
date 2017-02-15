@@ -8,10 +8,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 /**
- * Gestions des jours fÈriÈs FranÁais
- * <p>
- * Algorithme de Butcher
- * https://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques_selon_la_m%C3%A9thode_de_Meeus#Calcul_de_la_date_de_P.C3.A2ques_gr.C3.A9gorienne
+ * Gestions des jours feries Francais
  */
 public class BankHolidayUtils {
 
@@ -36,7 +33,10 @@ public class BankHolidayUtils {
   }
 
   /**
-   * Calcul le jour de p‚ques pour l'annÈe
+   * Calcul le jour de paques pour l'annee
+   * <p>
+   * Algorithme de Butcher, m√©thode de Meeus
+   * https://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques_selon_la_m%C3%A9thode_de_Meeus#Calcul_de_la_date_de_P.C3.A2ques_gr.C3.A9gorienne
    *
    * @param year
    * @return
@@ -71,7 +71,49 @@ public class BankHolidayUtils {
   }
 
   /**
-   * lundi de p‚ques
+   * Calcul le jour de p√¢que pour l'ann√©e en param√®tre avec la m√©thode de Conway
+   * https://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques_selon_la_m%C3%A9thode_de_Conway
+   *
+   * @param year
+   * @return
+   */
+  LocalDate getEasterDayConwayMethod(final int year) {
+    final int s = year / 100;//annn√©e s√©culaire
+    final int t = year % 100; // mill√©sime
+    final int a = t / 4;// terme bissextil
+    final int p = s % 4;
+    final int jps = (9 - 2 * p) % 7; // jour pivot s√©culaire
+    final int jp = (jps + t + a) % 7; // jout-pivot de l'ann√©e courante
+    final int g = year % 19;
+    final int G = g + 1; // Cycle de M√©ton
+    final int b = s / 4; // M√©temptose
+    final int r = (8 * (s + 11)) / 25; //Proemptose
+
+    final int C = -s + b + r;//Correction s√©culaire
+
+    final int d = (((11 * G + C) % 30) + 30) % 30;//Pleine lune pascale
+
+    final int h = (551 - 19 * d + G) / 544;// Correction des exceptions √† l'√©pacte
+
+    final int e = (50 - d - h) % 7;// √©cart de la pleine lune pascale au jour-pivot
+    final int f = (e + jp) % 7; // jour de la plene lune pascale
+
+    final int R = 57 - d - f - h; // Dimanche de paques
+    int day;
+    Month month;
+    if (R <= 31) {
+      day = R;
+      month = Month.MARCH;
+    } else {
+      month = Month.APRIL;
+      day = R - 31;
+    }
+
+    return LocalDate.of(year, month, day);
+  }
+
+  /**
+   * lundi de paques
    *
    * @param easterDay
    * @return
@@ -104,7 +146,7 @@ public class BankHolidayUtils {
   }
 
   /**
-   * VÈrifie si la date ets un jour fÈriÈ.
+   * Verifie si la date ets un jour ferie.
    *
    * @param date
    * @return
